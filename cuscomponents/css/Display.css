@@ -1,0 +1,16 @@
+.imgTshirt{
+    position: relative;
+}
+.design-box{
+    position: absolute;
+    top: 250px;
+    left: 150px;
+}
+.uploadImage{
+    border: 6px solid #fff;
+}
+.text{
+    font-size: 30px;
+    font-weight: 900;
+}
+

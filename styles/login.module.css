@@ -1,0 +1,113 @@
+.outter {
+  /* background-color: #dff3fc; */
+  min-height: 80vh;
+  width: 100%;
+  height: -webkit-max-content;
+  height: -moz-max-content;
+  height: max-content;
+  /* max-width: 1200px; */
+  margin: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 10px 0;
+  
+}
+
+.outter span{
+  background-color: white;
+  padding: 30px;
+  /* box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; */
+}
+
+
+
+.outter  h2 {
+  font-size: 30px;
+  font-weight: 700;
+  text-align: center;
+  color: #000;
+}
+
+
+.outter input[type="text"] {
+  width: 300px;
+  height: 35px;
+  border: 2px solid #f0f0f0;
+  margin-top: 0.5rem;
+  padding: 0.75rem 0;
+
+}
+
+
+.outter input[type="email"] {
+  width: 300px;
+  height: 35px;
+  border: 2px solid #f0f0f0;
+  margin-top: 0.5rem;
+  padding: 0.75rem 0;
+
+}
+
+.outter  input[type="password"] {
+  width: 300px;
+  height: 35px;
+  border: 2px solid #f0f0f0;
+  margin-top: 0.5rem;
+  padding: 0.75rem 0;
+  
+}
+
+
+.outter  button {
+  width: 100%;
+  margin-top: 0.5rem;
+  padding: 0.75rem 0;
+  background: transparent;
+  text-transform: uppercase;
+  border: 2px solid black;
+  cursor: pointer;
+}
+
+.outter  button:hover {
+  background: black;
+  color: white;
+}
+
+.outter  .forget {
+  width: 300px;
+  height: 20px;
+  padding: 1% 0px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 16px;
+  font-weight: 500;
+  color: #000
+}
+
+.outter  .forget:hover {
+  color: #000;
+  cursor: pointer;
+  text-decoration: underline;
+}
