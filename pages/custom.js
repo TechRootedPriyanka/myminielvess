@@ -1,4 +1,5 @@
 // import Dashboard from '../cuscomponents/dashboard/Dashboard'
+// import { exportComponentAsJPEG, exportComponentAsPDF, exportComponentAsPNG } from 'react-component-export-image';
 import axios from 'axios'
 import React, { Component } from 'react'
 import Display from '../cuscomponents/design/Display'

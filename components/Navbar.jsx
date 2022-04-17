@@ -1,10 +1,17 @@
 import Link from 'next/link';
-import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getCart } from '../redux/cart.slice';
 import styles from '../styles/Navbar.module.css';
 
 const Navbar = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getCart())
+  }, []);
   const cart = useSelector((state) => state.cart.cart);
-
+  const auth = useSelector((state) => state.auth.accessToken);
+  
   const getItemsCount = () => {
     return cart.reduce((accumulator, item) => accumulator + item.quantity, 0);
   };
@@ -27,11 +34,12 @@ const Navbar = () => {
             <p>Cart ({getItemsCount()})</p>
           </Link>
         </li>
-        <li className={styles.navlink}>
+      {auth ==="" ? <li className={styles.navlink} >
           <Link href="/login">
             <p>Login</p>
           </Link>
-        </li>
+        </li> : null
+}
         <li className={styles.navlink}>
           <Link href="/YourAccount">
             <p><img src="https://img.icons8.com/ios-glyphs/25/000000/user--v1.png"/></p>

@@ -12,8 +12,10 @@ import useRazorpay from "react-razorpay";
 import { makePayment } from '../payment';
 import { getProfile } from '../redux/user.slice';
 import ProfileEdit from '../components/ProfileEdit';
+import { useRouter } from 'next/router';
 
 const CartPage = () => {
+  const router = useRouter()
   const Razorpay = useRazorpay();
   const dispatch = useDispatch();
   const [state, setstate] = useState(false);
@@ -37,7 +39,7 @@ const CartPage = () => {
     }
     else{
       // setstate(!state)
-      makePayment(getTotalPrice(), Razorpay,profile,auth);
+      makePayment(getTotalPrice(), Razorpay,profile,auth, router);
 
     }
   }

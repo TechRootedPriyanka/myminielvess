@@ -3,8 +3,7 @@ import useRazorpay from "react-razorpay";
 import { useRouter } from 'next/router'
 
 export const makePayment  = async ( price = "1000", Razorpay, profile,
-auth  ) => {
-  const router = useRouter()
+auth, router  ) => {
 
 
   const options = {
@@ -41,14 +40,8 @@ auth  ) => {
   const rzp1 = new Razorpay(options);
 
   rzp1.on("payment.failed",  (response) => {
-    console.log(response);
-    alert(response.error.code);
-    alert(response.error.description);
-    alert(response.error.source);
-    alert(response.error.step);
-    alert(response.error.reason);
-    alert(response.error.metadata.order_id);
-    alert(response.error.metadata.payment_id);
+   alert("Payment Failed");
+   console.log(response);
   });
 
   rzp1.open();
