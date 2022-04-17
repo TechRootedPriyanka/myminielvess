@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {
   incrementQuantity,
@@ -8,12 +8,21 @@ import {
   getCart,
 } from '../redux/cart.slice';
 import styles from '../styles/CartPage.module.css';
+import useRazorpay from "react-razorpay";
+import { makePayment } from '../payment';
+import { getProfile } from '../redux/user.slice';
+import ProfileEdit from '../components/ProfileEdit';
 
 const CartPage = () => {
+  const Razorpay = useRazorpay();
   const dispatch = useDispatch();
+  const [state, setstate] = useState(false);
+  const profile = useSelector((state) => state.user.user);
+  const auth = useSelector((state) => state.auth.accessToken);
   useEffect(() => {
     dispatch(getCart())
-  }, []);
+    dispatch(getProfile())
+  }, [state]);
   const cart = useSelector((state) => state.cart.cart);
 
   const getTotalPrice = () => {
@@ -22,8 +31,25 @@ const CartPage = () => {
       0
     );
   };
+  const buyNow = () => {
+    if(profile.address_1 === '' || profile.address_2 === '' || profile.city === '' || profile.state === '' || profile.pincode === ''){
+      setstate(!state)
+    }
+    else{
+      // setstate(!state)
+      makePayment(getTotalPrice(), Razorpay,profile,auth);
 
+    }
+  }
+    
   return (
+    <div>
+ {
+   state ?   <ProfileEdit  func = {() =>{
+    setstate(!state)
+
+   }} data={profile} isCheckOut={false}/> : 
+ 
     <div className={styles.container}>
       {cart.length === 0 ? (
         <h1>Your Cart is Empty!</h1>
@@ -52,7 +78,7 @@ const CartPage = () => {
                 <button onClick={() => dispatch(decrementQuantity(item.id))}>
                   -
                 </button>
-                <button onClick={() => dispatch(removeFromCart(item.id))}>
+                  <button onClick={() => dispatch(removeFromCart(item.id))}>
                   x
                 </button>
               </div>
@@ -60,10 +86,12 @@ const CartPage = () => {
             </div>
           ))}
           <h2>Grand Total: $ {getTotalPrice()}</h2>
-          <button>Check Out</button>
+          <button onClick={buyNow}>Check Out</button>
         </>
       )}
-    </div>
+    </div> 
+   }
+          </div>
   );
 };
 

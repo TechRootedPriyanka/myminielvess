@@ -38,35 +38,23 @@ import Setting from '../design/Setting'
         })
     }
     handleUploadImage = (e)=>{
-        // if(e.target.files[0]){
-        //     console.log(window)
-        //     this.setState({
-                               
-        //         uploadImage : e.target.files[0].getAsDataURL()
-        //      });
+        e.preventDefault()
+        if(e.target.files[0]){
+            const image = (e.target.files[0]);
             
-        // }
-        // if(e.target.files[0]){
-        //     const image = (e.target.files[0]);
-        //     const uploadTask = storage.ref(`images/${image.name}`).put(image);
-        //     uploadTask.on(`state_changed`,
-        //     (snapshot)=>{
-        //         console.log(snapshot);
-        //     },
-        //     (err) =>{
-        //         console.log('this is err line')
-        //         console.log(err);
-        //     },
-        //     ()=>{
-        //         storage.ref('image').child(image.name).getDownloadURL().then(url=>{
-        //             console.log(url);
-        //             this.setState({
-        //                 uploadImage : url
-        //             });
-        //         })
-        //     }
-        //     )
-        // }
+
+            const formData = new FormData();
+            formData.append('image',image);
+    const resp = await           axios.post('http://localhost:5000/upload',formData,{
+                headers : {
+                    'Content-Type' : 'multipart/form-data'
+                }
+            })
+            this.setState({
+                uploadImage : resp.data
+            })
+            console.log(this.state.uploadImage);
+        }
     }
     render() {
         return (

@@ -4,11 +4,11 @@ import axios from 'axios';
 
  export const loginAction = createAsyncThunk('auth/login', async (user, { getState }) => {
   console.log(user);
-    const res = await  axios.post('https://nestjs-e-back.herokuapp.com/auth/login', user);
+    const res = await  axios.post('http://localhost:5000/auth/login', user);
     return res.data.accessToken;
 });
 export const signupAction = createAsyncThunk('auth/signup', async (user, { getState }) => {
-    const res = await  axios.post('https://nestjs-e-back.herokuapp.com/auth/signup', user);
+    const res = await  axios.post('http://localhost:5000/auth/signup', user);
     return res.data.accessToken;
 });
 

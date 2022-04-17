@@ -4,7 +4,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 export const getCart = createAsyncThunk(
   "cart/getCart",
   async (arg, { getState }) => {
-    const res = await axios.get("https://nestjs-e-back.herokuapp.com/cart/user", {
+    const res = await axios.get("http://localhost:5000/cart/user", {
       headers: {
         Authorization: `Bearer ${getState().auth.accessToken}`,
       },
@@ -17,7 +17,7 @@ export const incrementQuantity = createAsyncThunk(
   "cart/incrementQuantity",
   async (id, { getState }) => {
     await axios.patch(
-      "https://nestjs-e-back.herokuapp.com/cart/increment/" + id,
+      "http://localhost:5000/cart/increment/" + id,
       {},
       {
         headers: {
@@ -25,7 +25,7 @@ export const incrementQuantity = createAsyncThunk(
         },
       }
     );
-    const res = await axios.get("https://nestjs-e-back.herokuapp.com/cart/user", {
+    const res = await axios.get("http://localhost:5000/cart/user", {
       headers: {
         Authorization: `Bearer ${getState().auth.accessToken}`,
       },
@@ -37,7 +37,7 @@ export const decrementQuantity = createAsyncThunk(
   "cart/decrementQuantity",
   async (id, { getState }) => {
     await axios.patch(
-      "https://nestjs-e-back.herokuapp.com/cart/decrement/" + id,
+      "http://localhost:5000/cart/decrement/" + id,
       {},
       {
         headers: {
@@ -46,7 +46,7 @@ export const decrementQuantity = createAsyncThunk(
       }
     );
 
-    const res = await axios.get("https://nestjs-e-back.herokuapp.com/cart/user", {
+    const res = await axios.get("http://localhost:5000/cart/user", {
       headers: {
         Authorization: `Bearer ${getState().auth.accessToken}`,
       },
@@ -57,12 +57,12 @@ export const decrementQuantity = createAsyncThunk(
 export const removeFromCart = createAsyncThunk(
   "cart/removeProduct",
   async (id, { getState }) => {
-    await axios.delete("https://nestjs-e-back.herokuapp.com/cart/" + id, {
+    await axios.delete("http://localhost:5000/cart/" + id, {
       headers: {
         Authorization: `Bearer ${getState().auth.accessToken}`,
       },
     });
-    const res = await axios.get("https://nestjs-e-back.herokuapp.com/cart/user", {
+    const res = await axios.get("http://localhost:5000/cart/user", {
       headers: {
         Authorization: `Bearer ${getState().auth.accessToken}`,
       },
@@ -70,11 +70,38 @@ export const removeFromCart = createAsyncThunk(
     return res.data;
   }
 );
+export const addToCartCart = createAsyncThunk(
+  "cart/addToCart",
+  async (product, { getState }) => {
+    // product map to formdata
+    const formData = new FormData();
+    for (let key in product) {
+      formData.append(key, product[key]);
+    }
+    await axios.post(
+      "http://localhost:5000/cart/add",
+      formData,
+      {
+        headers: {
+          Authorization: `Bearer ${getState().auth.accessToken}`,
+        },
+      }
+    );
+    const res = await axios.get("http://localhost:5000/cart/user", {
+      headers: {
+        Authorization: `Bearer ${getState().auth.accessToken}`,
+      },
+    });
+    return res.data;
+  }
+);
+
+
 export const addToCart = createAsyncThunk(
   "cart/addProduct",
   async (product, { getState }) => {
     await axios.post(
-      "https://nestjs-e-back.herokuapp.com/cart/",
+      "http://localhost:5000/cart/",
       { ...product, quantity: 1 },
       {
         headers: {
@@ -82,7 +109,7 @@ export const addToCart = createAsyncThunk(
         },
       }
     );
-    const res = await axios.get("https://nestjs-e-back.herokuapp.com/cart/user", {
+    const res = await axios.get("http://localhost:5000/cart/user", {
       headers: {
         Authorization: `Bearer ${getState().auth.accessToken}`,
       },
@@ -94,7 +121,7 @@ export const addCustomProduct = createAsyncThunk(
   "cart/addCustomProduct",
   async (product, { getState }) => {
     await axios.post(
-      "https://nestjs-e-back.herokuapp.com/cart/custom",
+      "http://localhost:5000/cart/custom",
       { ...product, quantity: 1 },
       {
         headers: {
@@ -102,7 +129,7 @@ export const addCustomProduct = createAsyncThunk(
         },
       }
     );
-    const res = await axios.get("https://nestjs-e-back.herokuapp.com/cart/user", {
+    const res = await axios.get("http://localhost:5000/cart/user", {
       headers: {
         Authorization: `Bearer ${getState().auth.accessToken}`,
       },

@@ -1,0 +1,134 @@
+.title{
+  text-align: center;
+  justify-content: center;
+}
+
+.title h1{
+  font-size: 60px;
+  padding: 20px;
+}
+.title h3{
+  font-size: 30px;
+  font-weight: 300;
+  padding: 10px;
+}
+.outter{
+  display: flex;
+  margin: 0.5rem;
+  padding: 0.75rem 0;
+  text-align: center;
+  justify-content: center;
+}
+
+.outter div{
+  width: 20%;
+  border: 2px solid #000;
+  margin: 0.5rem;
+  padding: 0.75rem 0;
+  text-align: center;
+  justify-content: center;
+}
+
+/* .outter div:hover {
+  background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(0, 0, 0, 0.205) 100%);
+  color: white;
+} */
+
+.outter div img{
+  width: 40px;
+  padding: 10px;
+  
+}
+.outter div img:hover{
+  width: 50px;
+  padding: 10px;
+
+}
+
+
+
+.inner{
+  display: flex;
+  margin: 0.5rem;
+  padding: 0.75rem 0;
+  text-align: center;
+  justify-content: center;
+}
+
+.inner div{
+  width: 15%;
+  border: 2px solid #000;
+  margin: 0.3rem;
+  padding: 0.45rem 0;
+  text-align: center;
+  justify-content: center;
+}
+
+/* .inner div:hover {
+  background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(0, 0, 0, 0.205) 100%);
+  color: white;
+} */
+
+.inner div img{
+  width: 40px;
+  padding: 10px;
+  
+}
+.inner div img:hover{
+  width: 50px;
+  padding: 10px;
+
+}
+
+
+.spc{
+  display: flex;
+  margin: 0.5rem;
+  padding: 0.75rem 0;
+  text-align: center;
+  justify-content: center;
+}
+
+.spc div{
+  width: 30%;
+  border: 2px solid #000;
+  margin: 0.5rem;
+  padding: 0.75rem 0;
+  text-align: center;
+  justify-content: center;
+}
+
+/* .spc div:hover {
+  background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(0, 0, 0, 0.205) 100%);
+  color: white;
+} */
+
+.spc div img{
+  width: 40px;
+  padding: 10px;
+  
+}
+.spc div img:hover{
+  width: 50px;
+  padding: 10px;
+
+}
+
+.spc  button {
+  width: 80%;
+  margin-top: 0.5rem;
+  padding: 0.75rem 0;
+  background: transparent;
+  text-transform: uppercase;
+  border: 0;
+  cursor: pointer;
+}
+
+.spc  button:hover {
+  background: black;
+  color: white;
+}
+
+.edit{
+  float: right;
+}

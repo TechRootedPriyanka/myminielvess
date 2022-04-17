@@ -6,6 +6,7 @@ import authSlice from './auth.slice';
 import storage from "redux-persist/lib/storage";
 // import persistReducer from 'redux-persist/es/persistReducer';
 import {persistReducer} from 'redux-persist';
+import userSlice from './user.slice';
 
 
 // import { cartReducer } from './cart.slice';
@@ -15,6 +16,7 @@ const persistConfig = {
   whitelist:['auth'],
 }
 const reducer = combineReducers({
+  user: userSlice,
   cart: cartReducer,
   product: productReducer,
   order: orderReducer,

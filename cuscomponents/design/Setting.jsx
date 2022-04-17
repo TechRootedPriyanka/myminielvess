@@ -15,7 +15,6 @@ function Setting({
       <h5>Upload Image</h5>
       <br></br>
       <div className="row">
-        <form>
           <div className="col-8">
             <input type="file" onChange={uploadImage} />
             <button
@@ -26,7 +25,6 @@ function Setting({
             </button>
           </div>
         
-        </form>
       </div>
       
       <hr style={{ border: "1px solid #ccc" }} />

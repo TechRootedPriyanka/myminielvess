@@ -1,23 +1,29 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-const addToOrder = createAsyncThunk('order/addToOrder', async (product, { getState }) => {
-    const state = getState();
-    const order = state.order;
-    const newOrder = [...order.products, product];
-    return { products: newOrder };
+import axios from 'axios';
+export const getOrders = createAsyncThunk('order/getOrders', async (product, { getState }) => {
+   const res = await axios.get('http://localhost:5000/order/user', {
+      headers: {
+          Authorization: `Bearer ${getState().auth.accessToken}`,
+      },
+
+});
+return res.data;
 });
 
 const orderSlice = createSlice({
   name: 'order',
-  initialState: [],
+  initialState: {
+    order: [],
+  },
   // reducers: {
   //   addToOrder: (state, action) => {
   //     state.push(action.payload);
   //   },
 extraReducers:  
   (builder) => {
-    builder.addCase(addToOrder.fulfilled, (state, action) => {
-      state.push(action.payload);
+    builder.addCase(getOrders.fulfilled, (state, action) => {
+      state.order  = action.payload;
     });
   },});
   export default orderSlice.reducer;
