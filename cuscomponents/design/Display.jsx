@@ -1,9 +1,16 @@
-import React from "react";
-
+import React, { useRef } from "react";
+import { exportComponentAsJPEG, exportComponentAsPDF, exportComponentAsPNG } from 'react-component-export-image';
+import html2canvas from 'html2canvas';
+import { useDispatch } from "react-redux";
+import { addCustomProduct } from "../../redux/cart.slice";
+import Image from 'next/image'
 function Display(props) {
+  const componentRef = useRef();
+  const dispatch = useDispatch()
+
   return (
     <div>
-      <div>
+      <div ref={componentRef}>
         <div style={{ display: "flex" }}>
           <div>
             <div
@@ -47,6 +54,21 @@ function Display(props) {
           </div>
         </div>
       </div>
+      <button onClick={async () =>{
+        
+      // generate random string of 5 characters
+      const randomString = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+      html2canvas(componentRef.current,
+        
+        {
+useCORS: true,
+
+          allowTaint: true,
+
+          imageTimeout: 100,
+          }
+        )
+      }}>save</button>
     </div>
   );
 }

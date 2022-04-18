@@ -13,6 +13,7 @@ import { makePayment } from '../payment';
 import { getProfile } from '../redux/user.slice';
 import ProfileEdit from '../components/ProfileEdit';
 import { useRouter } from 'next/router';
+import CheckoutEdit from '../components/CheckoutEdit';
 
 const CartPage = () => {
   const router = useRouter()
@@ -38,7 +39,6 @@ const CartPage = () => {
       setstate(!state)
     }
     else{
-      // setstate(!state)
       makePayment(getTotalPrice(), Razorpay,profile,auth, router);
 
     }
@@ -47,7 +47,7 @@ const CartPage = () => {
   return (
     <div>
  {
-   state ?   <ProfileEdit  func = {() =>{
+   state ?   <CheckoutEdit  func = {() =>{
     setstate(!state)
 
    }} data={profile} isCheckOut={false}/> : 

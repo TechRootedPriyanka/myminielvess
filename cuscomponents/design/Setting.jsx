@@ -1,12 +1,14 @@
 import React from "react";
-
-function Setting({
+import { exportComponentAsJPEG,   } from 'react-component-export-image';
+import { useDispatch } from "react-redux";
+const  Setting =(({
   upperText,
   lowerText,
   textColor,
   textSize,
   uploadImage
-}) {
+  
+}, ) =>{
   return (
     <div >
       <h2 >Style</h2>
@@ -112,9 +114,16 @@ function Setting({
           </div>
         </div>
       </div>
-      <button className="btn btn-primary my-3 rounded">Save</button>
+      <button className="btn btn-primary my-3 rounded" 
+      onClick={() => {
+        
+      //  const image  = exportComponentAsJPEG(ref)
+      //  console.log(image);
+      }}
+      
+      >Save</button>
     </div>
   );
-}
+})
 
 export default Setting;

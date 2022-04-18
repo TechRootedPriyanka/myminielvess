@@ -120,9 +120,14 @@ export const addToCart = createAsyncThunk(
 export const addCustomProduct = createAsyncThunk(
   "cart/addCustomProduct",
   async (product, { getState }) => {
+    // convert product to formdata
+    const formData = new FormData();
+    for (let key in product) {
+      formData.append(key, product[key]);
+    }
     await axios.post(
       "http://localhost:5000/cart/custom",
-      { ...product, quantity: 1 },
+      formData,
       {
         headers: {
           Authorization: `Bearer ${getState().auth.accessToken}`,

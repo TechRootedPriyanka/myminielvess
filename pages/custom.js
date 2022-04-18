@@ -1,20 +1,28 @@
 // import Dashboard from '../cuscomponents/dashboard/Dashboard'
 // import { exportComponentAsJPEG, exportComponentAsPDF, exportComponentAsPNG } from 'react-component-export-image';
+import dynamic from 'next/dynamic'
 import axios from 'axios'
 import React, { Component } from 'react'
-import Display from '../cuscomponents/design/Display'
-import Setting from '../cuscomponents/design/Setting'
+// import Display from '../cuscomponents/design/Display'
+const Display = dynamic(() => import('../cuscomponents/design/Display'),
+{
+    ssr: false
+})
+const Setting = dynamic(() => import( '../cuscomponents/design/Setting') ,{
+    ssr: false
+})
 
-// import {storage} from '../config/firebaseConfig'
 
- class Dashboard extends Component {
+ class Dashboard extends React.Component {
+
     state = {
         tshirtImage : 'https://res.cloudinary.com/dieyzzi8d/image/upload/v1590212189/mintbluetfront_ld4aqi.jpg',
         upperText : "This is upper text",
         lowerText : 'This is lower text',
         uploadImage : "http://via.placeholder.com/150x150",
         textSize : '30',
-        textColor : "black"
+        textColor : "black",
+        price: 750,
     }
     handleTshirtColor = (e)=>{
         this.setState({ 
@@ -65,7 +73,7 @@ import Setting from '../cuscomponents/design/Setting'
             <div className='container py-5'>
                 <div style={{ display: "flex",paddingLeft:'10%' }}>
                    <div >
-                        <Display display={this.state}/>
+                        <Display display={this.state}  />
                    </div>
                    <div style={{ width:'50%',paddingLeft:'10%' }}>
                         <Setting 
