@@ -71,7 +71,7 @@ const CartPage = () => {
                 <Image src={item.image} height="90" width="65" />
               </div>
               <p>{item.product}</p>
-              <p>$ {item.price}</p>
+              <p>₹ {item.price}</p>
               <p>{item.quantity}</p>
               <div className={styles.buttons}>
                 <button onClick={() => dispatch(incrementQuantity(item.id))}>
@@ -84,10 +84,10 @@ const CartPage = () => {
                   x
                 </button>
               </div>
-              <p>$ {item.quantity * item.price}</p>
+              <p>₹ {item.quantity * item.price}</p>
             </div>
           ))}
-          <h2>Grand Total: $ {getTotalPrice()}</h2>
+          <h2>Grand Total: ₹ {getTotalPrice()}</h2>
           <button onClick={buyNow}>Check Out</button>
         </>
       )}

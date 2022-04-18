@@ -4,10 +4,11 @@ import html2canvas from 'html2canvas';
 import { useDispatch } from "react-redux";
 import { addCustomProduct } from "../../redux/cart.slice";
 import Image from 'next/image'
+import { useRouter } from "next/router";
 function Display(props) {
   const componentRef = useRef();
   const dispatch = useDispatch()
-
+  const router = useRouter()
   return (
     <div>
       <div ref={componentRef}>
@@ -35,7 +36,10 @@ function Display(props) {
                   </p>
                 </div>
                 <div style={{ paddingLeft:'150px', paddingRight:'150px'}}>
-                  <img src={props.display.uploadImage} alt="uploadImage" />
+                  <Image  src={props.display.uploadImage} alt="uploadImage"
+                   width={300}
+                    height={300}
+                  />
                 </div>
                 <div>
                   <p
@@ -56,17 +60,31 @@ function Display(props) {
       </div>
       <button onClick={async () =>{
         
-      // generate random string of 5 characters
+      
       const randomString = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
       html2canvas(componentRef.current,
         
         {
-useCORS: true,
-
+          useCORS: true,
           allowTaint: true,
-
           imageTimeout: 100,
+       
           }
+        ).then(function (canvas) {
+          // console.log("canvas");
+          canvas.toBlob(function(blob) {
+            dispatch(addCustomProduct({
+             quantity: 1, 
+             "price": 350,
+             "image": blob, 
+             "category": "T-shirt", 
+             "product": "Custom T-shirt",
+             "id": randomString,
+            }))
+           }, "image/jpeg");
+           alert("Custom T-shirt added to cart")
+            router.push('/cart')
+        }
         )
       }}>save</button>
     </div>
