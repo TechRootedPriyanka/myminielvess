@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import { addCustomProduct } from "../../redux/cart.slice";
 import Image from 'next/image'
 import { useRouter } from "next/router";
+// new
 function Display(props) {
   const componentRef = useRef();
   const dispatch = useDispatch()
