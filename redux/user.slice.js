@@ -3,7 +3,7 @@ import axios from "axios";
 export const getProfile = createAsyncThunk(
   "user/getProfile",
   async (arg, { getState }) => {
-    const res = await axios.get("http://localhost:5000/user/userId", {
+    const res = await axios.get("https://nestjs-e-back.herokuapp.com/user/userId", {
       headers: {
         Authorization: `Bearer ${getState().auth.accessToken}`,
       },
@@ -15,7 +15,7 @@ export const updateProfile = createAsyncThunk(
   "user/",
   async (arg, { getState }) => {
     const res = await axios.patch(
-      "http://localhost:5000/user/",
+      "https://nestjs-e-back.herokuapp.com/user/",
       arg,
       {
         headers: {

@@ -1,10 +1,13 @@
 import React, { PureComponent, useState } from "react";
 import Link from "next/link";
 import styles from '../styles/login.module.css';
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { signupAction } from "../redux/auth.slice";
+import { useRouter } from "next/router";
 
 const signup = () => {
+  const auth = useSelector((state) => state.auth.accessToken);
+  const router = useRouter()
   const dispatch = useDispatch();
   const [state, setstate] = useState({});
   const handleChange = (e) => {
@@ -18,6 +21,11 @@ const signup = () => {
         password: state.password,
       })
     );
+    if (auth.length > 0) {
+      // navigate to the home page
+      alert("signup success");
+      router.push("/");
+    }
   };
   return (
     <>

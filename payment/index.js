@@ -15,7 +15,7 @@ auth, router  ) => {
     image: "https://example.com/your_logo",
     handler: async (response) => {
       if(response.razorpay_payment_id){
-        await axios.post("http://localhost:5000/order",{payment_id:response.razorpay_payment_id},{
+        await axios.post("https://nestjs-e-back.herokuapp.com/order",{payment_id:response.razorpay_payment_id},{
           headers : {
             Authorization : `Bearer ${auth}`
           }

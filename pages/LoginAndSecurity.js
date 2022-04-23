@@ -1,12 +1,18 @@
-import React, { PureComponent } from "react";
+import React, { PureComponent, useEffect } from "react";
 import Link from "next/link";
 import styles from "../styles/youraccount.module.css";
 import { useDispatch } from "react-redux";
 import { logout } from "../redux/auth.slice";
 import { useRouter } from "next/router";
+import { getProfile } from "../redux/user.slice";
+import { useSelector } from "react-redux";
 
 const YourAccount = () => {
+  useEffect(() => {
+    dispatch(getProfile())
+  }, []);
   const router = useRouter();
+  const profile = useSelector((state) => state.user.user);
 
   const dispatch = useDispatch();
 
@@ -14,22 +20,28 @@ const YourAccount = () => {
     <>
       <div className={styles.spc}>
         <div>
-          <Link href="/LoginAndSecurityEdit">
+          {/* <Link href="/LoginAndSecurityEdit">
             <img
               src="https://img.icons8.com/ios-filled/30/000000/pencil-tip.png"
               className={styles.edit}
             />
-          </Link>
+          </Link> */}
           <br />
           <p>
             <br />
             <u> Login And Security </u>
           </p>
           <br></br>
-          <h5>Your Name</h5>
-          <p>Priyank</p> <br></br>
+          {
+            profile.name ?
+          <>
+            <h5>Your Name</h5>
+          <p>{profile.name}</p> <br></br>
+          </> :
+          null
+        }
           <h5>Email</h5>
-          <p>priyanka.shahasane@gmail.com</p> <br></br>
+          <p>{profile.email}</p> <br></br>
           <h5>Password</h5>
           <p>********</p> <br></br>
         </div>

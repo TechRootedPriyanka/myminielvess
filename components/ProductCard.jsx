@@ -12,7 +12,11 @@ const ProductCard = ({ product }) => {
   const dispatch = useDispatch();
 
   return (
-    <div className={styles}>
+    <div className={styles} onClick={
+      () => {
+        router.push(`/product/${product.id}`)
+      }
+    }>
       <Image src={product.image} height={300} width={220} />
       <h4 className={styles.title}>{product.product}</h4>
       <h5 className={styles.category}>{product.category}</h5>

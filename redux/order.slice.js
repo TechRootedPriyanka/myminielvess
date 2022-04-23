@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 export const getOrders = createAsyncThunk('order/getOrders', async (product, { getState }) => {
-   const res = await axios.get('http://localhost:5000/order/user', {
+   const res = await axios.get('https://nestjs-e-back.herokuapp.com/order/user', {
       headers: {
           Authorization: `Bearer ${getState().auth.accessToken}`,
       },

@@ -45,7 +45,7 @@ import Setting from '../design/Setting'
 
             const formData = new FormData();
             formData.append('image',image);
-    const resp = await           axios.post('http://localhost:5000/upload',formData,{
+    const resp = await           axios.post('https://nestjs-e-back.herokuapp.com/upload',formData,{
                 headers : {
                     'Content-Type' : 'multipart/form-data'
                 }

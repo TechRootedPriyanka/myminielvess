@@ -24,7 +24,8 @@ const login = () => {
       );
      if(auth.length > 0){
      // navigate to the home page
-      router.push('/');
+     alert('login success') 
+     router.push('/');
     }
     }
   return (
